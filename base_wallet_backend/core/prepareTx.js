@@ -85,6 +85,11 @@ const createTransaction = async (priv = null, toAddress, Amount, Inputs) => {
   try {
     mongoose = await connect();
 
+    // TODO: SECURITY WARNING - Race Condition / Double Spend Risk
+    // This function processes Inputs without an atomic database lock.
+    // Concurrent requests could select and spend the same UTXOs.
+    // See AUDIT_REPORT.md for details.
+
     priv = BigInt(priv);
     const newTX = new createTx(priv, toAddress, Amount, Inputs);
     return newTX.main();

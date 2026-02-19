@@ -72,11 +72,6 @@ class CreateKeys {
 
     // Get Public Address by Base58 encoding
     const Publicaddress = base58Encode(PubKeyHashWithMainnetPrefixAndChecksum);
-    console.log(
-      `Private Key ${this.privateKey} \nPublic Key Hash :${PubKeyHash.toString(
-        "hex"
-      )}\nPublic Address: ${Publicaddress}`
-    );
     return Publicaddress;
   }
 }
